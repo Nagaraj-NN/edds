@@ -1,0 +1,48 @@
+name: DBT_DISTR_EDDS
+version: 1.0.0
+config-version: 2
+profile: DBT_DISTR_EDDS
+model-paths:
+  - models
+analysis-paths:
+  - analyses
+test-paths:
+  - tests
+seed-paths:
+  - seeds
+macro-paths:
+  - macros
+snapshot-paths:
+  - snapshots
+models:
+  DBT_DISTR_EDDS:
+    +materialized: view
+    # CHANGE LOG (2026-09-12): the EPM block below was added; it disables models
+    # centrally so none of those model files had to be edited.
+    EPM:
+      DIM:
+        # these only UPDATE the shared PS_Z_ETL_JOBS control table; CI must not touch it
+        UPDATE_ETL_JOBS_PARMS:
+          +enabled: "{{ target.name != 'ci' }}"
+        UPDATE_ETL_JOBS_PARMS_DWMS:
+          +enabled: "{{ target.name != 'ci' }}"
+        UPDATE_ETL_JOBS_STATUS:
+          +enabled: "{{ target.name != 'ci' }}"
+      STG:
+        # appends to EPM_GL_BUSINESS_UNIT_TREE, whose loading model is missing from the project
+        ADD_MISSING_GLBUS:
+          +enabled: false
+
+vars:
+  app_name_by_schema:
+    EPM: EDDS
+    DWMR: EDDS
+    TEST_DBT_SCH: EDDS
+  
+seeds:
+  DBT_DISTR_EDDS:
+    +database: "{{target.database }}"
+    +schema: METADATA       
+
+on-run-end:
+  - "{{ mark_failed_jobs(results) }}"

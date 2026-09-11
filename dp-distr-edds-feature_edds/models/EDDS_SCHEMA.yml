@@ -1,0 +1,63 @@
+version: 2
+
+sources:
+  - name: CRPDB01_BOEPMMRT
+    database: CRPDB01
+    schema: BOEPMMRT
+    tables:
+      - name: PS_PROJ_RES_ACT_VW
+      
+  - name: CRPDB01_EPMADM
+    database: CRPDB01
+    schema: EPMADM
+    tables:
+      - name: PSTREEDEFN
+      - name: PSTREELEAF
+      - name: PSTREENODE
+      - name: PS_BUS_UNIT_SRC_PF
+      - name: PS_BUS_UNIT_TBL_FS
+      - name: PS_BUS_UNIT_TBL_GL
+      - name: PS_DEPARTMENT_TBL
+      - name: PS_GL_ACCOUNT_TBL
+      - name: PS_PROJECT_D00
+      - name: PS_PROJ_ACT_D00
+      - name: PS_PROJ_ANGRP_D00
+      - name: PS_PROJ_CATG_D00
+      - name: PS_PROJ_RES_TP_D00
+      - name: PS_TREE_NODE_TBL
+      - name: PS_VOUCHER_D00
+      - name: PS_Z_BENLOC_D00
+      - name: PS_Z_DEPT_NOD
+      - name: PS_Z_ETL_JOBS
+      
+  - name: DWMRP_DWMR
+    database: DWMRP
+    schema: DWMR
+    tables:
+      - name: DWMS_SOURCE_STATUS
+      
+  - name: DWMRP_EPM
+    database: DWMRP
+    schema: EPM
+    tables:
+      - name: EPM_ACTUAL_COST_BASE
+      
+  - name: EDDSP_EPM
+    database: EDDSP
+    schema: EPM
+    tables:
+      - name: EPM_BENEFIT_LOC_DIM
+      - name: EPM_BENEFIT_LOC_TREE
+      - name: EPM_BUDGET_ACCNT_DIM
+      - name: EPM_BUDGET_ACCNT_TREE
+      - name: EPM_BUSINESS_UNIT_DIM
+      - name: EPM_COST_CLASS_DIM
+      - name: EPM_COST_CLASS_TREE
+      - name: EPM_GL_BUSINESS_UNIT_TREE
+      - name: EPM_GL_DEPT_DIM
+      - name: EPM_GL_DEPT_TREE
+      - name: EPM_PROC_ACTIV_DIM
+      - name: EPM_PROC_ACTIV_TREE
+      - name: EPM_PROJECT_DIM
+      - name: EPM_PROJECT_TREE
+      - name: EPM_PROJECT_WO_DIM
