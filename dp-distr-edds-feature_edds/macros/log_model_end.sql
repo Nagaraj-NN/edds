@@ -1,6 +1,11 @@
+{# CHANGE LOG (2026-09-12)
+   CHANGED : app_name is looked up from model.config.schema (the folder-level
+             +schema in dbt_project.yml) instead of model.schema, matching
+             log_model_start and the cigma project. #}
+
 {% macro log_model_end(model_name, autosys_job_name) %}
 
-    {% set app_name = var('app_name_by_schema').get(model.schema | upper) %}
+    {% set app_name = var('app_name_by_schema').get(model.config.schema | upper) %}
     {% set exec_table = model.database ~ '.METADATA.' ~ app_name ~ '_JOB_EXECUTION' %}
     
 

@@ -19,7 +19,12 @@ models:
     +materialized: view
     # CHANGE LOG (2026-09-12): the EPM block below was added; it disables models
     # centrally so none of those model files had to be edited.
+    # CHANGE LOG (2026-09-12): +schema added, as in cigma. log_model_start and
+    # log_model_end look up app_name from model.config.schema, which has to be set
+    # here at folder level: a schema set inside a model's own config() is not yet
+    # visible when that same config() calls log_model_start in its pre_hook.
     EPM:
+      +schema: EPM
       DIM:
         # these only UPDATE the shared PS_Z_ETL_JOBS control table; CI must not touch it
         UPDATE_ETL_JOBS_PARMS:
